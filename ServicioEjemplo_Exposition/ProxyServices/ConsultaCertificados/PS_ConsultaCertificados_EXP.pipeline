@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:pipelineEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+    <con:coreEntry>
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:SoapBindingType">
+            <con:wsdl ref="ServicioEjemplo_Exposition/Resources/WSDLs/ConsultaCertificados/ConsultaCertificados"/>
+            <con:binding>
+                <con:name>consultaEjemploSoapBinding</con:name>
+                <con:namespace>http://soa.fonasa.cl/servicios/ConsultaCertificados</con:namespace>
+            </con:binding>
+        </con:binding>
+        <con:xqConfiguration>
+            <con:snippetVersion>1.0</con:snippetVersion>
+        </con:xqConfiguration>
+    </con:coreEntry>
+    <con:router>
+        <con:pipeline type="request" name="request-N3f57ff9b.5f18ac42.0.157330dd8d4.N8000">
+            <con:stage id="_StageId-N3f57ff9b.5f18ac42.0.157330dd8d4.N7ffe" name="Stage1">
+                <con:context>
+                    <con1:userNsDecl prefix="con" namespace="http://soa.fonasa.cl/mensajes/ConsultaCertificados"/>
+                </con:context>
+                <con:actions>
+                    <con2:validate>
+                        <con1:id>_ActionId-N3f57ff9b.5f18ac42.0.157330dd8d4.N7ffa</con1:id>
+                        <con2:schema ref="ServicioEjemplo_Exposition/Resources/Schemas/ConsultaCertificados/ConsultaCertificados"/>
+                        <con2:schemaElement xmlns:con1="http://soa.fonasa.cl/mensajes/ConsultaCertificados">con1:ConsultaCertificadosRequest</con2:schemaElement>
+                        <con2:varName>body</con2:varName>
+                        <con2:location>
+                            <con1:xpathText>./con:ConsultaCertificadosRequest</con1:xpathText>
+                        </con2:location>
+                    </con2:validate>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-N3f57ff9b.5f18ac42.0.157330dd8d4.N7fff">
+            <con:stage id="_StageId-N3f57ff9b.5f18ac42.0.157330dd8d4.N7ffd" name="Stage1">
+                <con:context/>
+                <con:actions>
+                    <con2:replace varName="body" contents-only="true">
+                        <con1:id>_ActionId-N3f57ff9b.5f18ac42.0.157330dd8d4.N7ff7</con1:id>
+                        <con2:location>
+                            <con1:xpathText>.</con1:xpathText>
+                        </con2:location>
+                        <con2:expr>
+                            <con1:xqueryText><![CDATA[<co:ConsultaCertificadosResponse xmlns:co="http://soa.fonasa.cl/mensajes/ConsultaCertificados">
+    <co:headerRequest>
+        <co:transaccionID>123456789</co:transaccionID>
+        <co:estadoID>0</co:estadoID>
+        <co:estadoMSG>Exito</co:estadoMSG>
+        <co:fechaHora>2006-05-04T18:13:51</co:fechaHora>
+    </co:headerRequest>
+    <co:bodyResquest>
+        <co:urlCertificadoGenerado>https://siis.fonasa.cl/GestorReportes/CertificadoAfiliacion?COD=iXPz5LAeAK0h7dGgWoHMim%2B48vdMPqIfqPRtS%2FOCuinGKee%2BLs0lx5LAcDxdBNqoTsZ1IQPmT8piwHzGtsFur8EairepMRf3vHHGWjpBc0WAFbG2%2FTJrA2DH8NTfHnZxmmpJkaHH%2Fumge1vdk9lY2bqqQi1%2BNOrpphJYychsKQA%3D</co:urlCertificadoGenerado>
+    </co:bodyResquest>
+</co:ConsultaCertificadosResponse>]]></con1:xqueryText>
+                        </con2:expr>
+                    </con2:replace>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="PipelinePairNode1">
+                <con:request>request-N3f57ff9b.5f18ac42.0.157330dd8d4.N8000</con:request>
+                <con:response>response-N3f57ff9b.5f18ac42.0.157330dd8d4.N7fff</con:response>
+            </con:pipeline-node>
+        </con:flow>
+    </con:router>
+</con:pipelineEntry>

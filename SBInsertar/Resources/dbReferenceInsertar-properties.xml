@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+   <entry key="USUARIOS.PAIS:db_column_not_null">false</entry>
+   <entry key="USUARIOS.PAIS:db_column_type">VARCHAR2</entry>
+   <entry key="USUARIOS.ID:db_column_scale">0</entry>
+   <entry key="USUARIOS:db_table_type">TABLE</entry>
+   <entry key="USUARIOS.PAIS:db_column_size">30</entry>
+   <entry key="USUARIOS.NOMBRE:db_column_type">VARCHAR2</entry>
+   <entry key="USUARIOS.ID:db_column_not_null">false</entry>
+   <entry key="USUARIOS:db_column_2">PAIS</entry>
+   <entry key="USUARIOS:db_column_1">NOMBRE</entry>
+   <entry key="USUARIOS.NOMBRE:db_column_not_null">false</entry>
+   <entry key="USUARIOS:db_column_0">ID</entry>
+   <entry key="USUARIOS.ID:db_column_type">NUMBER</entry>
+   <entry key="USUARIOS.NOMBRE:db_column_size">30</entry>
+   <entry key="root_descriptor_alias">USUARIOS</entry>
+   <entry key="USUARIOS.ID:db_column_precision">38</entry>
+</properties>

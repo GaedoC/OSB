@@ -1,0 +1,66 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://soa.fonasa.cl/mensajes/servicioDeEjemplo"
+            targetNamespace="http://soa.fonasa.cl/mensajes/servicioDeEjemplo" elementFormDefault="qualified">
+	<xsd:element name="servicioDeEjemploRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="headerRequest" type="HeaderRequest" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="bodyResquest" maxOccurs="1" minOccurs="1">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="parametroInputUno" type="xsd:string"/>
+							<xsd:element name="parametroInputDos" type="xsd:date"/>
+							<xsd:element name="parametroInputTres" type="xsd:date"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="servicioDeEjemploResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="headerRequest" type="HeaderResponse" minOccurs="1" maxOccurs="1"/>
+				<xsd:element name="bodyResquest" maxOccurs="1" minOccurs="1">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element name="salidaOutputUno" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+							<xsd:element name="items" type="ListaEstructuraComplejaType"/>
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="ListaEstructuraComplejaType">
+		<xsd:sequence>
+			<xsd:element name="estructuraCompleja" type="EstructuraComplejaType" minOccurs="1" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EstructuraComplejaType">
+		<xsd:sequence>
+			<xsd:element name="parametroOutputUno" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="parametroOutputDos" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="parametroOutputTres" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+			<xsd:element name="parametroOutputCuatro" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+        
+	<!-- Elemento con metadata de la respuesta, Cabecera de la respuesta, a este contenido se pueden añadir otros campos adicional a los que estan -->
+	<xsd:complexType name="HeaderResponse">
+		<xsd:sequence>
+			<xsd:element name="transaccionID" type="xsd:string"/>
+			<xsd:element name="estadoID" type="xsd:integer"/>
+			<xsd:element name="estadoMSG" type="xsd:string"/>
+			<xsd:element name="fechaHora" type="xsd:dateTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- Elemento con metadata de la peticion, Cabecera de la peticion, a este contenido se pueden añadir otros campos adicional a los que estan -->
+	<xsd:complexType name="HeaderRequest">
+		<xsd:sequence>
+			<xsd:element name="userID" type="xsd:string"/>
+			<xsd:element name="rolID" type="xsd:string"/>
+			<xsd:element name="SucursalID" type="xsd:string"/>
+			<xsd:element name="fechaHora" type="xsd:dateTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

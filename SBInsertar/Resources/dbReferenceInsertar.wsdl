@@ -1,0 +1,28 @@
+<wsdl:definitions
+     name="dbReferenceInsertar"
+     targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/BS_Insertar/SBInsertar/dbReferenceInsertar"
+     xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/db/BS_Insertar/SBInsertar/dbReferenceInsertar"
+     xmlns:jca="http://xmlns.oracle.com/pcbpel/wsdl/jca/"
+     xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:top="http://xmlns.oracle.com/pcbpel/adapter/db/top/dbReferenceInsertar"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+  <plt:partnerLinkType name="dbReferenceInsertar_plt" >
+    <plt:role name="dbReferenceInsertar_role" >
+      <plt:portType name="tns:dbReferenceInsertar_ptt" />
+    </plt:role>
+  </plt:partnerLinkType>
+    <wsdl:types>
+      <schema xmlns="http://www.w3.org/2001/XMLSchema" >
+        <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/dbReferenceInsertar" schemaLocation="dbReferenceInsertar_table.xsd" />
+      </schema>
+    </wsdl:types>
+    <wsdl:message name="UsuariosCollection_msg">
+        <wsdl:part name="UsuariosCollection" element="top:UsuariosCollection"/>
+    </wsdl:message>
+    <wsdl:portType name="dbReferenceInsertar_ptt">
+        <wsdl:operation name="insert">
+            <wsdl:input message="tns:UsuariosCollection_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

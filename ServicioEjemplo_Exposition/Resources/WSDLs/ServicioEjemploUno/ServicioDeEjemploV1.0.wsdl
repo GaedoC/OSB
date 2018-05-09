@@ -1,0 +1,39 @@
+<wsdl:definitions targetNamespace="http://soa.fonasa.cl/servicios/servicioDeEjemplo" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msg="http://soa.fonasa.cl/mensajes/servicioDeEjemplo" xmlns:ws="http://soa.fonasa.cl/servicios/servicioDeEjemplo">
+    
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://soa.fonasa.cl/servicio/servicioDeEjemplo">
+            <xsd:import namespace="http://soa.fonasa.cl/mensajes/servicioDeEjemplo" schemaLocation="../../Schemas/ServicioEjemploUno/ServicioDeEjemploV1.0.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="consultaEjemploRequest">
+        <wsdl:part name="request" element="msg:servicioDeEjemploRequest"/>
+    </wsdl:message>
+    
+    <wsdl:message name="consultaEjemploResponse">
+        <wsdl:part name="response" element="msg:servicioDeEjemploResponse"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="consultaEjemploPortType">
+        <wsdl:operation name="consultaEjemplo">
+            <wsdl:input message="ws:consultaEjemploRequest"/>
+            <wsdl:output message="ws:consultaEjemploResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="consultaEjemploSoapBinding" type="ws:consultaEjemploPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="consultaEjemplo">
+            <soap:operation soapAction="http://soa.fonasa.cl/servicios/servicioDeEjemplo/consultaEjemplo"/>
+            <wsdl:input> <soap:body use="literal"/> </wsdl:input>
+            <wsdl:output> <soap:body use="literal"/> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="consultaEjemplo">
+        <wsdl:port binding="ws:consultaEjemploSoapBinding" name="consultaEjemploPort">
+            <soap:address location="http://servidorQuePublica:8011/proyecto_osb/capa/servicio_IMPL"/>
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>

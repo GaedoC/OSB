@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<co:ConsultaCertificadosResponse xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:co="http://soa.fonasa.cl/mensajes/ConsultaCertificados"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://soa.fonasa.cl/mensajes/ConsultaCertificados file:/C:/pcarrasco/Dropbox/Fonasa/Proyectos/Artefactos%20Arquitectura/ServicioEjemplo/AplicacionOSBEjemplo/ServicioEjemplo_Exposition/Resources/Schemas/ConsultaCertificados/ConsultaCertificados.xsd">
+    <co:headerRequest>
+        <co:transaccionID>transaccionID0</co:transaccionID>
+        <co:estadoID>0</co:estadoID>
+        <co:estadoMSG>estadoMSG0</co:estadoMSG>
+        <co:fechaHora>2006-05-04T18:13:51.0</co:fechaHora>
+    </co:headerRequest>
+    <co:bodyResquest>
+        <co:urlCertificadoGenerado>urlCertificadoGenerado0</co:urlCertificadoGenerado>
+    </co:bodyResquest>
+</co:ConsultaCertificadosResponse>

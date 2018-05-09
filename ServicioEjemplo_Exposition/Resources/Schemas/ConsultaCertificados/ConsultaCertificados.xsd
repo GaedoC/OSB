@@ -1,0 +1,80 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://soa.fonasa.cl/mensajes/ConsultaCertificados"
+    targetNamespace="http://soa.fonasa.cl/mensajes/ConsultaCertificados"
+    elementFormDefault="qualified" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    vc:minVersion="1.0" vc:maxVersion="1.1">
+    <xsd:element name="ConsultaCertificadosRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="headerRequest" type="HeaderRequest" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="bodyResquest" maxOccurs="1" minOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="parametrosDinamicos" type="ParametrosDinamicosType"/>
+                            <xsd:element name="parametrosFijos" type="ParametrosFijosType"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="ConsultaCertificadosResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="headerRequest" type="HeaderResponse" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="bodyResquest" maxOccurs="1" minOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="urlCertificadoGenerado" type="xsd:string"
+                                minOccurs="1" maxOccurs="1"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="ParametrosDinamicosType">
+        <xsd:annotation>
+            <xsd:documentation>Estructura para una lista dinamica de campos que responden a la necesidad particular del certificado a generar.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="parametro" type="ParametroType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ParametrosFijosType">
+        <xsd:annotation>
+            <xsd:documentation>Estructura de datos obligatorios y corresponden al run del Beneficiario</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="RUN" type="xsd:integer" minOccurs="1" maxOccurs="1"/>
+            <xsd:element name="DV" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- Elemento con metadata de la respuesta, Cabecera de la respuesta, a este contenido se pueden añadir otros campos adicional a los que estan -->
+    <xsd:complexType name="HeaderResponse">
+        <xsd:sequence>
+            <xsd:element name="transaccionID" type="xsd:string"/>
+            <xsd:element name="estadoID" type="xsd:integer"/>
+            <xsd:element name="estadoMSG" type="xsd:string"/>
+            <xsd:element name="fechaHora" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!-- Elemento con metadata de la peticion, Cabecera de la peticion, a este contenido se pueden añadir otros campos adicional a los que estan -->
+    <xsd:complexType name="HeaderRequest">
+        <xsd:sequence>
+            <xsd:element name="usuario" type="xsd:string"/>
+            <xsd:element name="password" type="xsd:string"/>
+            <xsd:element name="tipoCertificado" type="xsd:integer">
+                <xsd:annotation>
+                    <xsd:documentation>[1:certificado afiliacion, 2:certificado no afiliacion, 3:certificado cotizaciones, 4:certificado honorarios prestador, 5:certificado cartola cotizaciones, 6:cartola deuda GES, 7:bonos MLE emitidos, 8:estado licencias medicas, 9:cartola prestamos medicos]</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="tipoUsuario" type="xsd:integer"/>
+            <xsd:element name="fechaHora" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ParametroType">
+        <xsd:attribute name="nombre" type="xsd:string" use="required"/>
+        <xsd:attribute name="valor" type="xsd:string" use="required"/>
+    </xsd:complexType>
+</xsd:schema>
